@@ -21,7 +21,6 @@ var firebaseConfig = {
     // Grab input values...
     var xTrainName          = $("#train-name-input").val().trim();
     var xTrainDestination   = $("#train-destination-input").val().trim();
-    // var xTrainStart         = $("#train-start-input").val().trim();
     var xTrainStart         = moment($("#train-start-input").val().trim(),"hh:mm").format("X");
     var xTrainFreq          = $("#train-freq-input").val().trim();
     
@@ -74,61 +73,4 @@ database.ref("/trainScheduler").on("child_added", function(childSnapshot) {
   // Append the new row to the table
   $("#train-table > tbody").append(newRow);
 
-});
-
-$("#test").on("click", function() {
-  var firstTrain = moment().set('hour', 13).set('minute', 00);
-  console.log(moment(firstTrain).format("LT"));
-
-  //calculate difference between times
-  var difference =  moment().diff(moment(firstTrain),"minutes");
-  console.log(difference);
-
-  
-  var nextTrain = moment(firstTrain).add(difference,"m");
-  console.log(moment(nextTrain).format("LT"));
-
-  //time apart(remainder)
-  var frequency = 15;
-  var trainRemain = difference % frequency;
-  console.log(trainRemain);
-
-  //minutes until arrival
-  var minUntil = frequency - trainRemain;
-  console.log(minUntil);
-  
-  //next arrival time
-  var nextArrival = moment().add(minUntil, "minutes").format('hh:mm');
-  console.log(nextArrival);
-});
-
-$("#test2").on("click", function(event) {
-  event.preventDefault();
-  
-  // var inputStart = $("#train-start-input").val().trim();
-  var xTrainStart         = moment($("#train-start-input").val().trim(),"hh:mm").format("X");
-  console.log(xTrainStart);
-
-  //makes first train time neater
-  var trainTime = moment.unix(xTrainStart).format("LT");
-  console.log(trainTime);
-
-  //calculate difference between times
-  var difference = moment().diff(moment.unix(xTrainStart), "minutes");
-  // var difference =  moment().diff(moment(trainTime),"minutes");
-  console.log(difference);
-  
-  //time apart(remainder)
-  var frequency = $("#train-freq-input").val().trim();
-  var trainRemain = difference % frequency;
-  console.log("Frequency: " + frequency);
-  console.log(trainRemain);
-
-  //minutes until arrival
-  var minUntil = frequency - trainRemain;
-  console.log("Next Arrival in " + minUntil);
-  
-  //next arrival time
-  var nextArrival = moment().add(minUntil, "minutes").format('hh:mm');
-  console.log(nextArrival);
 });
