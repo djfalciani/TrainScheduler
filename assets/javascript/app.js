@@ -59,7 +59,7 @@ database.ref("/trainScheduler").on("child_added", function(childSnapshot) {
     var trainRemain = difference % dbsTrainFreq;
     var minUntil = dbsTrainFreq - trainRemain;
     //next arrival time
-    var nextArrival = moment().add(minUntil, "minutes").format('hh:mm');
+    var nextArrival = moment().add(minUntil, "minutes").format('LT');
 
     // Create the new row
     var newRow = $("<tr>").append(
