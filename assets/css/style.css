@@ -1,8 +1,18 @@
 body {
     /* background-color: aqua; */
+    background-image: url(../images/transport-q-c-640-480-6.jpg);
+     /* Full height */
+     height: 100%; 
+     margin: 0;
+   
+     /* Center and scale the image nicely */
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment:fixed;
 }
 
-.div-header {
+.div-header, .jumbotron, .display-4 {
     background-color: steelblue;
     color: white;
     font-weight: bold;
